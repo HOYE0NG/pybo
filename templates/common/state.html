@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="card text-center my-2">
+    <div class="card-body">
+            <p class="card-text">이름 : {{ user.username }}</p>
+            <p class="card-text">이메일 : {{ user.email }}</p>
+        </div>
+    </div>
+
+    <table class="table my-2">
+    <thead>
+        <tr class="text-center table-dark">
+            <th>번호</th>
+            <th style="width:50%">제목</th>
+            <th>작성일자</th>
+        </tr>
+        </thead>
+    <tbody>
+
+            {% for question in question_list %}
+                <tr class="text-center">
+                <td>{{ forloop.counter }}</td>
+                <td class="text-start"><a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a></td>
+                <td>{{ question.create_date }}</td>
+                </tr>
+            {% endfor %}
+
+    </tbody>
+    </table>
+{% endblock %}
